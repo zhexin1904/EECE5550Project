@@ -21,7 +21,7 @@ Some packages are required for [utbm](https://github.com/epan-utbm/utbm_robocar_
 
 ```
 cd ~/catkin_ws/src
-git clone https:
+git clone https: https://github.com/zhexin1904/EECE5550Project.git
 cd ..
 catkin_make -j
 ```
@@ -30,7 +30,8 @@ catkin_make -j
 
 ## [utbm](https://github.com/epan-utbm/utbm_robocar_dataset)
 
-<img src="/home/jason/LidarSLAM/Gnss-legoloam/pic/utbm/global_map.png" alt="" width="600" height="500">
+
+![image](https://github.com/zhexin1904/EECE5550Project/blob/main/pic/utbm/global_map.png)
 
 Dependency:
 
@@ -45,7 +46,7 @@ Dependency:
 
 ## [Mulran](https://sites.google.com/view/mulran-pr/dataset)
 
-<img src="/home/jason/LidarSLAM/Gnss-legoloam/pic/mulran/mulran_gps.png" alt="" width="600" height="500">
+![image](https://github.com/zhexin1904/EECE5550Project/blob/main/pic/mulran/mulran_gps.png)
 
 Dependency:
 
@@ -102,7 +103,7 @@ Besides the basic config of Lidar SLAM(point cloud topic, Lidar type, imu topic.
 
 This work is built based on [LeGO-LOAM](https://github.com/RobustFieldAutonomyLab/LeGO-LOAM)
 
-Thanks for these great works from which we learned to 
+Thanks for these great works from which we learned and used to build the system:
 
 [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM)
 
