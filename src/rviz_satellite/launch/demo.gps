@@ -1,0 +1,14 @@
+header:
+  seq: 6
+  stamp:
+    secs: 1525289293
+    nsecs: 138457019
+  frame_id: "navsat"
+status:
+  status: 2
+  service: 1
+latitude: 47.511450016666664
+longitude: 6.793199433333333
+altitude: 412.613
+position_covariance: [1.2100000000000002, 0.0, 0.0, 0.0, 1.2100000000000002, 0.0, 0.0, 0.0, 4.840000000000001]
+position_covariance_type: 1
