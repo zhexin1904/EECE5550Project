@@ -103,7 +103,7 @@ Besides the basic config of Lidar SLAM(point cloud topic, Lidar type, imu topic.
 
 This work is built based on [LeGO-LOAM](https://github.com/RobustFieldAutonomyLab/LeGO-LOAM)
 
-Thanks for these great works from which we learned to 
+Thanks for these great works from which we learned and used to build the system:
 
 [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM)
 
