@@ -21,7 +21,7 @@ Some packages are required for [utbm](https://github.com/epan-utbm/utbm_robocar_
 
 ```
 cd ~/catkin_ws/src
-git clone https:
+git clone https: https://github.com/zhexin1904/EECE5550Project.git
 cd ..
 catkin_make -j
 ```
