@@ -1654,7 +1654,8 @@ void saveOptimizedVerticesTUM(gtsam::Values _estimates) {
             Vector3 << noise_x, noise_y, noise_z;
             // Vector3 << max(noise_x, 1.0f), max(noise_y, 1.0f), max(noise_z, 1.0f);
 
-            // ? if using robust kernel
+            // ? if using robust kernel 
+            // ？ which kernel, Cauchy ?
             noiseModel::Diagonal::shared_ptr gps_noise = noiseModel::Robust::Create(
                 noiseModel::mEstimator::Huber::Create(1), noiseModel::Diagonal::Variances(Vector3));
 
