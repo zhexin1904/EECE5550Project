@@ -30,7 +30,8 @@ catkin_make -j
 
 ## [utbm](https://github.com/epan-utbm/utbm_robocar_dataset)
 
-<img src="/home/jason/LidarSLAM/Gnss-legoloam/pic/utbm/global_map.png" alt="" width="600" height="500">
+
+![image](https://github.com/zhexin1904/EECE5550Project/blob/main/pic/utbm/global_map.png)
 
 Dependency:
 
@@ -45,7 +46,7 @@ Dependency:
 
 ## [Mulran](https://sites.google.com/view/mulran-pr/dataset)
 
-<img src="/home/jason/LidarSLAM/Gnss-legoloam/pic/mulran/mulran_gps.png" alt="" width="600" height="500">
+![image](https://github.com/zhexin1904/EECE5550Project/blob/main/pic/mulran/mulran_gps.png)
 
 Dependency:
 
