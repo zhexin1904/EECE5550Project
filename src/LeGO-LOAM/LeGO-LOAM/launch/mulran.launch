@@ -1,0 +1,63 @@
+<launch>
+    
+    <!--- Sim Time -->
+    <param name="/use_sim_time" value="true" />
+    
+    <!--- rosbag play -->
+    <!-- <param name="bag" default="/home/jason/datasets/utbm_robocar_dataset_20180502_noimage2.bag"/> -->
+
+    <!-- -clock forgot - -->
+    <!-- <node pkg="rosbag" type="play" name="rosbag_play" args="-clock -r 1 $(arg bag)" required="false">
+      <remap from="/imu/data" to="/imu_not_use"/> 
+      <remap from="/tf" to="/tf_not_use"/>
+    </node> -->
+    
+    <!--- Velodyne_packets to velodyne_points -->
+    <node pkg="velodyne_pointcloud" type="cloud_node" name="cloud_node">
+      <remap from="/velodyne_packets" to="/hdl32e_left/velodyne_packets"/>
+      <param name="calibration" value="$(find velodyne_pointcloud)/params/32db.yaml"/>
+      <param name="min_range" value="0.4"/>
+      <param name="max_range" value="130.0"/>
+      <param name="view_direction" value="3.1415926"/>
+      <param name="view_width" value="5.4769"/>
+    </node>
+
+
+    <!-- origin in rviz_satellite -->
+    <node pkg="rostopic" type="rostopic" name="fake_gps_fix"
+          args="pub fake_gps/fix sensor_msgs/NavSatFix '{ header: auto, latitude: 36.3700337, longitude: 127.3712587, altitude: 66.184}'"
+          output="screen"/>
+          <!-- 
+latitude: 36.3700337
+longitude: 127.3712587
+altitude: 66.184
+position_covariance: [7.001316, 0.0, 0.0, 0.0, 7.001316, 0.0, 0.0, 0.0, 10.969344]
+
+           -->
+          
+
+    <!-- get groundtruth -->
+    <node pkg="nmea_navsat_driver" type="nmea_topic_driver" name="nmea_topic_driver"/>
+    <node pkg="gps_common" type="utm_odometry_node" name="utm_odometry_node"/>
+    <node pkg="magellan_proflex500_driver" type="magellan_proflex500_driver" name="magellan_proflex500_driver"/>
+
+    <!--- Run Rviz-->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find lego_loam)/launch/lego_loam_utbm.rviz" />
+    
+    <!--- TF -->
+    <node pkg="tf" type="static_transform_publisher" name="camera_init_to_map"  args="0 0 0 1.570795   0        1.570795 /map    /camera_init 10" />
+    <node pkg="tf" type="static_transform_publisher" name="base_link_to_camera" args="0 0 0 -1.570795 -1.570795 0        /camera /base_link   10" />
+    
+    <!--- LeGO-LOAM -->
+    <node pkg="lego_loam" type="imageProjection"    name="imageProjection"    output="screen"/>
+    <node pkg="lego_loam" type="featureAssociation" name="featureAssociation" output="screen"/>
+
+    <node pkg="lego_loam" type="mapOptmizationLIO"     name="mapOptmizationLIO"     output="screen"/>
+
+    <node pkg="lego_loam" type="transformFusion"    name="transformFusion"    output="screen"/>
+    <!-- <node pkg="lego_loam" type="pathSave"    name="pathSave"    output="screen"/> -->
+    <node pkg="lego_loam" type="pathSave_utbm"    name="pathSave_utbm"    output="screen"/>
+    <node pkg="lego_loam" type="simpleGpsOdom"    name="simpleGpsOdom"    output="screen"/>
+
+
+</launch>
