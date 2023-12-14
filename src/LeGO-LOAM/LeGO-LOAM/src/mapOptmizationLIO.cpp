@@ -1649,12 +1649,18 @@ void saveOptimizedVerticesTUM(gtsam::Values _estimates) {
                 ROS_INFO("gps cov: %f, %f , %f", thisGPS.pose.covariance[0],
                          thisGPS.pose.covariance[7], thisGPS.pose.covariance[14]);
             }
-
+           
             gtsam::Vector Vector3(3);
             Vector3 << noise_x, noise_y, noise_z;
             // Vector3 << max(noise_x, 1.0f), max(noise_y, 1.0f), max(noise_z, 1.0f);
-            noiseModel::Diagonal::shared_ptr gps_noise =
-                    noiseModel::Diagonal::Variances(Vector3);
+
+            // ? if using robust kernel
+            noiseModel::Diagonal::shared_ptr gps_noise = noiseModel::Robust::Create(
+                noiseModel::mEstimator::Huber::Create(1), noiseModel::Diagonal::Variances(Vector3));
+
+            // ? if do not sue robust kernel
+            // noiseModel::Diagonal::shared_ptr gps_noise =
+            //         noiseModel::Diagonal::Variances(Vector3);
             // ! the key of gpsFactor is coorrect ? 
             gtsam::GPSFactor gps_factor(cloudKeyPoses3D->size(),
                                         gtsam::Point3(gps_x, gps_y, gps_z),
